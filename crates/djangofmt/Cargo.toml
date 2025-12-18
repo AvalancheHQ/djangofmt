@@ -30,12 +30,17 @@ miette = { workspace = true }
 thiserror = { workspace = true }
 
 [dev-dependencies]
+criterion = { version = "4.1.0", package = "codspeed-criterion-compat" }
 gag = { workspace = true }
 insta = { workspace = true }
 insta-cmd = { workspace = true }
 rstest = { workspace = true }
 serial_test = { workspace = true }
 similar-asserts = { workspace = true }
+
+[[bench]]
+name = "format_benchmark"
+harness = false
 
 [lints]
 workspace = true

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+        <h1 class="text-4xl font-bold text-gray-900 mb-6">{{ page_title }}</h1>
+        
+        {% if user.is_authenticated %}
+            <div class="user-profile mb-8">
+                <img src="{{ user.avatar_url }}" alt="{{ user.username }}" class="w-16 h-16 rounded-full">
+                <span class="ml-4 text-xl">Welcome, {{ user.username }}!</span>
+            </div>
+        {% endif %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for item in items %}
+                <div class="item-card p-6 border border-gray-200 rounded-lg hover:shadow-xl transition-shadow">
+                    <h2 class="text-2xl font-semibold mb-2">{{ item.title }}</h2>
+                    <p class="text-gray-600 mb-4">{{ item.description|truncatewords:30 }}</p>
+                    
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-full h-48 object-cover rounded">
+                    {% endif %}
+
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm text-gray-500">{{ item.created_at|date:"M d, Y" }}</span>
+                        <a href="{% url 'item_detail' item.id %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+<p class="col-span-3 text-center text-gray-500">No items available.</p>
+            {% endfor %}
+        </div>
+
+        {% if items.has_other_pages %}
+            <div class="pagination mt-8 flex justify-center space-x-2">
+                {% if items.has_previous %}
+                    <a href="?page={{ items.previous_page_number }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Previous</a>
+                {% endif %}
+
+                {% for num in items.paginator.page_range %}
+                    {% if items.number == num %}
+                        <span class="px-4 py-2 bg-blue-600 text-white rounded">{{ num }}</span>
+                    {% elif num > items.number|add:'-3' and num < items.number|add:'3' %}
+                        <a href="?page={{ num }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if items.has_next %}
+                    <a href="?page={{ items.next_page_number }}" class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
