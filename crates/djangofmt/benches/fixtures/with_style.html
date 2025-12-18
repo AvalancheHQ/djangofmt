@@ -1,0 +1,17 @@
+<div class="city-card rounded" style="background-image: linear-gradient(180deg, rgba(96, 115, 128, 0) 27.18%, #153e5c 95.88%), url('/shared-assets/images/examples/lizard.png')">
+    <h2 class="city-name">{{ city.name }}</h2>
+    <p class="city-description">{{ city.description }}</p>
+</div>
+
+<div class="flex flex-col items-center absolute z-10" style="top:60%; transform:translate(0,-50%)">
+    <button class="btn btn-primary" style="padding: 10px 20px; border-radius: 5px; background-color: #007bff; color: white;">
+        Click Me
+    </button>
+</div>
+
+<section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div class="hero-content" style="text-align: center; color: white;">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">{{ hero.title }}</h1>
+        <p style="font-size: 1.5rem; opacity: 0.9;">{{ hero.subtitle }}</p>
+    </div>
+</section>
