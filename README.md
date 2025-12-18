@@ -5,6 +5,7 @@
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/djangofmt.svg)](https://pypi.python.org/pypi/djangofmt)
 [![Actions status](https://github.com/UnknownPlatypus/djangofmt/actions/workflows/ci.yml/badge.svg)](https://github.com/UnknownPlatypus/djangofmt/actions)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/UnknownPlatypus/djangofmt/main.svg)](https://results.pre-commit.ci/latest/github/UnknownPlatypus/djangofmt/main)
+[![CodSpeed Badge](https://img.shields.io/endpoint?url=https://codspeed.io/badge.json)](https://codspeed.io/AvalancheHQ/djangofmt)
 
 A fast, HTML aware, Django template formatter, written in Rust.
 
@@ -53,7 +54,7 @@ Sample `.pre-commit-config.yaml`:
 
 The [separate repository](https://github.com/UnknownPlatypus/djangofmt-pre-commit) enables installation without compiling the Rust code.
 
-By default, the configuration uses pre-commit’s [`files` option](https://pre-commit.com/#creating-new-hooks) to detect
+By default, the configuration uses pre-commit's [`files` option](https://pre-commit.com/#creating-new-hooks) to detect
 all text files in directories named `templates`. If your templates are stored elsewhere, you can override this behavior
 by specifying the desired files in the hook configuration within your `.pre-commit-config.yaml` file.
 
@@ -87,7 +88,7 @@ For example, [git ls-files | xargs](https://adamj.eu/tech/2022/03/09/how-to-run-
 git ls-files -z -- '*.html' | xargs -0r djangofmt
 ```
 
-…or PowerShell’s [`ForEach-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object):
+…or PowerShell's [`ForEach-Object`](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object):
 
 ```shell
 git ls-files -- '*.html' | %{djangofmt $_}
